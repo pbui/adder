@@ -66,6 +66,8 @@ lexer_next(struct Lexer *l) {
             }
             l->token = TOKEN_COMMENT;
         } else if (l->current[0] == '"' || l->current[0] == '\'') {
+            /* FIXME: Need to check if string terminates */
+            /* FIXME: Need to support escaped quotes     */
             head++;
             tail++;
             while (*tail && *tail != l->current[0]) {
