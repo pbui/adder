@@ -9,6 +9,7 @@ const char *TOKEN_STRINGS[] = {
     "TOKEN_INTEGER",
     "TOKEN_IDENTIFIER",
     "TOKEN_IF",
+    "TOKEN_ELSE",
     "TOKEN_WHILE",
     "TOKEN_ASSIGNMENT",
     "TOKEN_PRINT",

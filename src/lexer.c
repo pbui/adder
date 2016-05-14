@@ -105,6 +105,8 @@ lexer_next(struct Lexer *l) {
             l->token = TOKEN_COMPARISON;
         } else if (strcmp(l->text, "if") == 0) {
             l->token = TOKEN_IF;
+        } else if (strcmp(l->text, "else") == 0) {
+            l->token = TOKEN_ELSE;
         } else if (strcmp(l->text, "while") == 0) {
             l->token = TOKEN_WHILE;
         } else if (strcmp(l->text, "print") == 0) {
