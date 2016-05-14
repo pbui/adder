@@ -85,29 +85,29 @@ lexer_next(struct Lexer *l) {
     l->current = tail + offset;
 
     if (l->token == TOKEN_UNKNOWN) {
-        if (strncmp(l->text, "+", length) == 0 ||
-            strncmp(l->text, "-", length) == 0 ||
-            strncmp(l->text, "*", length) == 0 ||
-            strncmp(l->text, "/", length) == 0 ||
-            strncmp(l->text, "%", length) == 0) {
+        if (strcmp(l->text, "+") == 0 ||
+            strcmp(l->text, "-") == 0 ||
+            strcmp(l->text, "*") == 0 ||
+            strcmp(l->text, "/") == 0 ||
+            strcmp(l->text, "%") == 0) {
             l->token = TOKEN_ARITHMETIC;
-        } else if (strncmp(l->text, "=", length) == 0) {
+        } else if (strcmp(l->text, "=") == 0) {
             l->token = TOKEN_ASSIGNMENT;
         } else if (
-            strncmp(l->text, "==", length) == 0 ||
-            strncmp(l->text, ">=", length) == 0 ||
-            strncmp(l->text, "<=", length) == 0 ||
-            strncmp(l->text, ">" , length) == 0 ||
-            strncmp(l->text, "<" , length) == 0 ||
-            strncmp(l->text, "!=", length) == 0) {
+            strcmp(l->text, "==") == 0 ||
+            strcmp(l->text, ">=") == 0 ||
+            strcmp(l->text, "<=") == 0 ||
+            strcmp(l->text, ">" ) == 0 ||
+            strcmp(l->text, "<" ) == 0 ||
+            strcmp(l->text, "!=") == 0) {
             l->token = TOKEN_COMPARISON;
-        } else if (strncmp(l->text, "if", length) == 0) {
+        } else if (strcmp(l->text, "if") == 0) {
             l->token = TOKEN_IF;
-        } else if (strncmp(l->text, "while", length) == 0) {
+        } else if (strcmp(l->text, "while") == 0) {
             l->token = TOKEN_WHILE;
-        } else if (strncmp(l->text, "print", length) == 0) {
+        } else if (strcmp(l->text, "print") == 0) {
             l->token = TOKEN_PRINT;
-        } else if (strncmp(l->text, "input", length) == 0) {
+        } else if (strcmp(l->text, "input") == 0) {
             l->token = TOKEN_INPUT;
         } else if (is_numeric(l->text)) {
             l->token = TOKEN_INTEGER;
