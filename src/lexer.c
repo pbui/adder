@@ -48,10 +48,17 @@ lexer_next(struct Lexer *l) {
     /* Scan for tokens */
     char  *tail   = head;
     size_t offset = 0;
-    if (head == l->buffer && indent > l->indent) {
-        l->token = TOKEN_INDENT;
-    } else if (head == l->buffer && indent < l->indent) {
-        l->token = TOKEN_DEDENT;
+    if (l->current[0] == '\r' || l->current[0] == '\n') {
+        while (*tail) {
+            tail++;
+        }
+        l->token = TOKEN_NEWLINE;
+    } else if (l->current == l->buffer && indent > l->indent) {
+        l->token  = TOKEN_INDENT;
+        l->indent = indent;
+    } else if (l->current == l->buffer && indent < l->indent) {
+        l->token  = TOKEN_DEDENT;
+        l->indent = indent;
     } else {
         if (l->current[0] == '#') {
             while (*tail && *tail != '\r' && *tail != '\n') {
@@ -66,11 +73,6 @@ lexer_next(struct Lexer *l) {
             }
             offset = 1;
             l->token = TOKEN_STRING;
-        } else if (l->current[0] == '\r' || l->current[0] == '\n') {
-            while (*tail) {
-                tail++;
-            }
-            l->token = TOKEN_NEWLINE;
         } else {
             while (*tail && !isspace(*tail)) {
                 tail++;
